@@ -4,8 +4,7 @@ import lejos.hardware.port.MotorPort;
 public class Navegacao {
 	EV3LargeRegulatedMotor motorDireito = new EV3LargeRegulatedMotor(MotorPort.A);
 	EV3LargeRegulatedMotor motorEsquerdo = new EV3LargeRegulatedMotor(MotorPort.D);
-	public boolean virarDireita = false;
-	public boolean virarEsquerda = false;
+	
 	private final int VELOCIDADE = 300;
 	private final int VELOCIDADE_REDIRECIONAMENTO = 400;
 	
@@ -17,7 +16,7 @@ public class Navegacao {
 	}// fim andar
 
 	public void RedirecionarParaDireita() {
-		if(virarDireita){
+		if(SensorDeCor.virarDireita){
 			motorDireito.setSpeed(VELOCIDADE);
 			motorEsquerdo.setSpeed(VELOCIDADE_REDIRECIONAMENTO);
 			motorEsquerdo.forward();
@@ -26,7 +25,7 @@ public class Navegacao {
 	}// fim redirecionar para direita
 
 	public void RedirecionarParaEsquerda() {
-		if(virarEsquerda){
+		if(SensorDeCor.virarEsquerda){
 			motorDireito.setSpeed(VELOCIDADE_REDIRECIONAMENTO);
 			motorEsquerdo.setSpeed(VELOCIDADE);
 			motorDireito.forward();
@@ -35,7 +34,9 @@ public class Navegacao {
 	}// fim redirecionar para esquerda
 	
 	public void Parar(){
-		motorEsquerdo.stop(true);
-		motorDireito.stop();
+		if(SensorDeCor.virarEsquerda && SensorDeCor.virarDireita){
+			motorEsquerdo.stop(true);
+			motorDireito.stop();
+		}
 	}
 }
