@@ -5,9 +5,10 @@ public class Navegacao {
 	EV3LargeRegulatedMotor motorDireito = new EV3LargeRegulatedMotor(MotorPort.A);
 	EV3LargeRegulatedMotor motorEsquerdo = new EV3LargeRegulatedMotor(MotorPort.D);
 	
-	private final int VELOCIDADE = 300;
-	private final int VELOCIDADE_REDIRECIONAMENTO = 400;
-	
+	private final int VELOCIDADE = 200;
+	private final int VELOCIDADE_REDIRECIONAMENTO = 100;
+	private final int VELOCIDADE_ZERO = 100;
+	public static boolean ultrapassou = false;
 	public void Andar() {
 		motorDireito.setSpeed(VELOCIDADE);
 		motorEsquerdo.setSpeed(VELOCIDADE);
@@ -16,20 +17,20 @@ public class Navegacao {
 	}// fim andar
 
 	public void RedirecionarParaDireita() {
-		if(SensorDeCor.virarDireita){
-			motorDireito.setSpeed(VELOCIDADE);
+	while(SensorDeCor.virarDireita){
+			motorDireito.setSpeed(VELOCIDADE_ZERO);
 			motorEsquerdo.setSpeed(VELOCIDADE_REDIRECIONAMENTO);
 			motorEsquerdo.forward();
-			motorDireito.forward();
+			motorDireito.backward();
 		}
 	}// fim redirecionar para direita
 
 	public void RedirecionarParaEsquerda() {
-		if(SensorDeCor.virarEsquerda){
+		while(SensorDeCor.virarEsquerda){
 			motorDireito.setSpeed(VELOCIDADE_REDIRECIONAMENTO);
-			motorEsquerdo.setSpeed(VELOCIDADE);
+			motorEsquerdo.setSpeed(VELOCIDADE_ZERO);
 			motorDireito.forward();
-			motorEsquerdo.forward();
+			motorEsquerdo.backward();
 		}
 	}// fim redirecionar para esquerda
 	
