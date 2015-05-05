@@ -9,6 +9,10 @@ public class SensorUltrassonico implements Runnable {
 
 	EV3UltrasonicSensor sensorUltrassom = new EV3UltrasonicSensor(SensorPort.S4);
 	private float dis;
+	public float getDis() {
+		return dis;
+	}
+
 	public static boolean obstaculoDetectado = false;
 
 	public void Leitura() {
