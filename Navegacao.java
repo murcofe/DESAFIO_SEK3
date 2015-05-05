@@ -15,13 +15,30 @@ public class Navegacao {
 		motorDireito.forward();
 		motorEsquerdo.forward();
 	}// fim andar
-
+	public void Desviar(){
+		motorDireito.rotate(360); //vira pra esquerda
+		motorEsquerdo.rotate(-360);
+		
+		motorDireito.rotate(360); //anda um pouco pra frente
+		motorEsquerdo.rotate(360);
+		
+		motorDireito.rotate(-360); // vira pra direita
+		motorEsquerdo.rotate(360);
+		motorDireito.rotate(360);	//anda
+		motorEsquerdo.rotate(360);
+		motorDireito.rotate(-360); // vira pra direita
+		motorEsquerdo.rotate(360);
+		
+		notifyAll(); //liga a thread do sensor de cor
+		
+	}
 	public void RedirecionarParaDireita() {
 	while(SensorDeCor.virarDireita){
 			motorDireito.setSpeed(VELOCIDADE_ZERO);
 			motorEsquerdo.setSpeed(VELOCIDADE_REDIRECIONAMENTO);
 			motorEsquerdo.forward();
 			motorDireito.backward();
+			
 		}
 	}// fim redirecionar para direita
 
