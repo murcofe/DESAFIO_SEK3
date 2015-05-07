@@ -39,15 +39,21 @@ public class Main_DESAFIOSEK3 {
 			navegacao2.virarEsquerda();
 			Thread procurar = new Thread(navegacao2);
 			procurar.start();
+			while(!SensorFrontal.vivo||!SensorFrontal.morto||!SensorFrontal.parede){
+				navegacao2.Andar();
+			}
 			while(true){
+				
 				navegacao2.virarDireita();
 				navegacao2.virarDireita();
-				navegacao2.Andar();
-				
+				while(!SensorFrontal.vivo||!SensorFrontal.morto||!SensorFrontal.parede){
+					navegacao2.Andar();
+				}
 				navegacao2.virarEsquerda();
 				navegacao2.virarEsquerda();
-				navegacao2.Andar();
-				
+				while(!SensorFrontal.vivo||!SensorFrontal.morto||!SensorFrontal.parede){
+					navegacao2.Andar();
+				}
 				Sair();
 			}
 			
