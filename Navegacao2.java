@@ -1,12 +1,7 @@
-import lejos.hardware.motor.EV3LargeRegulatedMotor;
-import lejos.hardware.port.MotorPort;
 import lejos.utility.Delay;
 
 public class Navegacao2 implements Runnable{
-	static EV3LargeRegulatedMotor motorD = new EV3LargeRegulatedMotor(
-			MotorPort.A);
-	static EV3LargeRegulatedMotor motorE = new EV3LargeRegulatedMotor(
-			MotorPort.D);
+	
 
 	public void virarDireita() {
 		Navegacao.motorDireito.rotate(-180, true);
@@ -33,20 +28,20 @@ public class Navegacao2 implements Runnable{
 	}
 
 	public void Parar(){
-		motorD.stop(true);
-		motorE.stop();
+		Navegacao.motorDireito.stop(true);
+		Navegacao.motorEsquerdo.stop();
 	}
 	public static void procurando(){
-		motorD.rotate(90,true);
-		motorE.rotate(-90);
-		motorD.rotate(-180,true);
-		motorE.rotate(180);
+		Navegacao.motorDireito.rotate(90,true);
+		Navegacao.motorEsquerdo.rotate(-90);
+		Navegacao.motorDireito.rotate(-180,true);
+		Navegacao.motorEsquerdo.rotate(180);
 	}
 	public void Andar() {
-		motorD.setSpeed(100);
-		motorE.setSpeed(100);
-		motorD.rotate(180,true);
-		motorE.rotate(180);
+		Navegacao.motorDireito.setSpeed(100);
+		Navegacao.motorEsquerdo.setSpeed(100);
+		Navegacao.motorDireito.rotate(180,true);
+		Navegacao.motorEsquerdo.rotate(180);
 
 	}
 
